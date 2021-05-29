@@ -14,6 +14,13 @@ It has some samples of rain noise recorded with my smartphone and sliced with Au
 
 * https://studio.edgeimpulse.com/public/33605/latest
 
+## How to run
+
+1. Open Arduino IDE
+2. Add the zip file as a library
+3. Go to File->Examples->coursera-environment-audio-classification Inferencing - Edge Impulse->nano_ble33_sense_microphone_continuous
+4. Upload to the board and open the serial monitor to observe the inferences
+
 ## Some useful commands
 
 * Transforms a list of wav files to 16000 Hz sampling:
