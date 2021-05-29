@@ -115,25 +115,6 @@ void loop()
         return;
     }
 
-    /* If noise or anomaly, turn the power led on. */
-    if(result.classification[0].value > 0.6 ||
-       result.classification[1].value > 0.6) 
-    {
-        if(noiseCounter++ > 10) {
-          noiseCounter=0;
-          digitalWrite(BLUE, HIGH); digitalWrite(RED, HIGH); digitalWrite(GREEN, HIGH);
-        }
-        digitalWrite(LED_PWR, HIGH);
-    }
-    
-    if(result.classification[2].value > 0.6) {
-      digitalWrite(BLUE, LOW); digitalWrite(RED, HIGH); digitalWrite(GREEN, HIGH); digitalWrite(LED_PWR, LOW);
-    } else if(result.classification[3].value > 0.6) {
-      digitalWrite(BLUE, HIGH); digitalWrite(RED, HIGH); digitalWrite(GREEN, LOW); digitalWrite(LED_PWR, LOW);
-    } else if(result.classification[4].value > 0.6) {
-      digitalWrite(BLUE, HIGH); digitalWrite(RED, LOW); digitalWrite(GREEN, HIGH); digitalWrite(LED_PWR, LOW);
-    }
-
     if (++print_results >= (EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW)) {
         // print the predictions
         ei_printf("Predictions ");
@@ -149,6 +130,26 @@ void loop()
 #endif
 
         print_results = 0;
+
+        /* If noise or anomaly, turn the power led on. */
+        if(result.classification[0].value > 0.6 ||
+           result.classification[1].value > 0.6) 
+        {
+            if(noiseCounter++ > 5) {
+              noiseCounter=0;
+              digitalWrite(BLUE, HIGH); digitalWrite(RED, HIGH); digitalWrite(GREEN, HIGH);
+            }
+            digitalWrite(LED_PWR, HIGH);
+        }
+        
+        if(result.classification[2].value > 0.6) {
+          digitalWrite(BLUE, LOW); digitalWrite(RED, HIGH); digitalWrite(GREEN, HIGH); digitalWrite(LED_PWR, LOW);
+        } else if(result.classification[3].value > 0.6) {
+          digitalWrite(BLUE, HIGH); digitalWrite(RED, HIGH); digitalWrite(GREEN, LOW); digitalWrite(LED_PWR, LOW);
+        } else if(result.classification[4].value > 0.6) {
+          digitalWrite(BLUE, HIGH); digitalWrite(RED, LOW); digitalWrite(GREEN, HIGH); digitalWrite(LED_PWR, LOW);
+        }
+            
     }
 }
 
