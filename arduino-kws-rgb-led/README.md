@@ -4,6 +4,8 @@ This project uses an Arduino Nano 33 BLE Sense to listen to three keywords in Po
 
 According to the keyword, it turns on the corresponding color in the embedded RGB LED.
 
+See it running here: https://youtu.be/-SSv93OWUFo.
+
 ## Voice dataset
 
 It has only 50 samples of my own voice.
